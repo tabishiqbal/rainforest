@@ -35,6 +35,14 @@ class ProductsController < ApplicationController
   	end
   end
 
+  def show
+    @product = Product.find(params[:id])
+
+    if current_user
+      @review = @product.reviews.build
+    end
+  end
+
   def destroy
   	@product = Product.find(params[:id])
   	@product.destroy
